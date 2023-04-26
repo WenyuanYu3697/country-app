@@ -1,11 +1,8 @@
-import React from "react";
+import React from 'react';
+import { Dashboard } from './pages/Dashboard';
 
 function App() {
-  return (
-    <div>
-      <p>Hello Kirkylo</p>
-    </div>
-  );
+  return <Dashboard />;
 }
 
 export default App;
