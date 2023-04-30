@@ -10,12 +10,8 @@ export const Header = () => {
   };
   return (
     <div className="h-[80px] flex justify-between items-center">
-      <div className="font-NunitoSans H-5 ml-[5rem] text-2xl">Where in the world?</div>
-      <button
-        type="button"
-        className="font-NunitoSans font-semibold mr-[5rem] flex items-center gap-1"
-        onClick={toggleTheme}
-      >
+      <div className="font-sans font-extrabold H-5 ml-[5rem] text-2xl">Where in the world?</div>
+      <button type="button" className="font-sans font-semibold mr-[5rem] flex items-center gap-1" onClick={toggleTheme}>
         {theme === 'light' ? <Brightness5Icon /> : <Brightness2Icon />}
         {theme === 'light' ? 'Light Mode' : 'Dark Mode'}
       </button>

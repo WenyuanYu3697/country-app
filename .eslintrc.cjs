@@ -17,5 +17,6 @@ module.exports = {
     'prettier/prettier': 'error',
     'no-param-reassign': 'off',
     'no-return-assign': 'off',
+    '@typescript-eslint/naming-convention': 'error',
   },
 };
