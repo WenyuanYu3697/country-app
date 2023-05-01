@@ -3,7 +3,7 @@ import { Header } from '../components/Header';
 import { Filter } from '../components/Filter';
 import { CountryCard } from '../components/CountryCard';
 
-export const Dashboard = () => {
+export const CountryList = () => {
   const [searchName, setSearchName] = useState('');
   const [searchGroup, setSearchGroup] = useState('');
 

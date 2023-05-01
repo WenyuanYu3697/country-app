@@ -5,18 +5,20 @@ import React, { FC, useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { IFilterProps, GFilterProps } from '../interfaces/Dashboard';
 
-export const Filter: FC<IFilterProps & GFilterProps> = ({ searchName, setSearchName, searchGroup, setSearchGroup }) => {
-  const [ButtonState, setButtonState] = useState<'on' | 'off'>('on');
+export interface IFilterProps {
+  searchName: string;
+  searchGroup: string;
+  setSearchName: React.Dispatch<React.SetStateAction<string>>;
+  setSearchGroup: React.Dispatch<React.SetStateAction<string>>;
+}
 
-  const toggleButton = () => {
-    setButtonState(ButtonState === 'on' ? 'off' : 'on');
-  };
+export const Filter: FC<IFilterProps> = ({ searchName, searchGroup, setSearchName, setSearchGroup }) => {
+  const [isDropdownOpened, setIsDropdownOpened] = useState(false);
 
   const handleChange = (name: string) => setSearchName(name);
 
-  const handleGroupChange = (groupName: string) => setSearchGroup(groupName);
+  const handleGroupChange = (groupName: string) => setSearchGroup(groupName === searchGroup ? '' : groupName);
 
   return (
     <div className="flex justify-between items-center mt-[3rem] h-[56px] rounded-md">
@@ -33,13 +35,13 @@ export const Filter: FC<IFilterProps & GFilterProps> = ({ searchName, setSearchN
       <div className="relative  bg-white w-[200px] mr-[80px] rounded-lg">
         <button
           type="button"
-          onClick={toggleButton}
+          onClick={() => setIsDropdownOpened(!isDropdownOpened)}
           className="h-[56px] ml-[24px] font-sans font-regular flex items-center gap-5"
         >
           Filter by Region
-          {ButtonState === 'on' ? <KeyboardArrowLeftIcon /> : <KeyboardArrowDownIcon />}
+          {isDropdownOpened ? <KeyboardArrowLeftIcon /> : <KeyboardArrowDownIcon />}
         </button>
-        {ButtonState === 'off' ? (
+        {isDropdownOpened ? (
           <ul className="absolute z-10 top-15 left-0 pl-6 w-full mt-2 bg-white rounded-md shadow-lg">
             <li className="pt-3" role="button" onClick={() => handleGroupChange('Africa')}>
               Africa

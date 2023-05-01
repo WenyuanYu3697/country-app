@@ -1,9 +1,14 @@
 import React, { FC } from 'react';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import { PaginationProps } from '../../interfaces/Pagination';
 
-export const Pagination: FC<PaginationProps> = ({ currentPage, totalPages, onPageChange }) => {
+interface IPaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (pageNumber: number) => void;
+}
+
+export const Pagination: FC<IPaginationProps> = ({ currentPage, totalPages, onPageChange }) => {
   const maxButtons = totalPages > 5 ? 5 : totalPages;
   const handlePageIncrease = () => {
     currentPage < totalPages ? onPageChange(currentPage + 1) : onPageChange(totalPages);

@@ -1,4 +1,4 @@
-export interface Icountry {
+export interface ICountry {
   name: {
     common: string;
   };

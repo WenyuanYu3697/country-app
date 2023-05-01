@@ -1,13 +1,12 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect, FC } from 'react';
-import { Icountry } from '../interfaces/CountryCard';
-import { CFilterProps } from '../interfaces/Dashboard';
-import { countryData } from '../api/api_countrycard';
-import { Pagination } from './small_components/Pagination';
+import { getCountries } from '../api/country';
+import { Pagination } from './Pagination';
+import { ICountry } from '../types/country';
 
 export const CountryCard: FC<CFilterProps> = ({ searchName, searchGroup }) => {
-  const [countries, setCountries] = useState<Icountry[]>([]);
-  const [container, setContainer] = useState<Icountry[]>([]);
+  const [countries, setCountries] = useState<ICountry[]>([]);
+  const [container, setContainer] = useState<ICountry[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
 
   const itemPerPage = 8;
@@ -22,8 +21,8 @@ export const CountryCard: FC<CFilterProps> = ({ searchName, searchGroup }) => {
 
   const initialUpdate = async () => {
     try {
-      const res = await countryData();
-      setContainer(res);
+      const res = await getCountries();
+      setContainer(res.data);
     } catch (error) {
       console.log(error);
     }
