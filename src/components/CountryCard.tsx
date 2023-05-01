@@ -3,10 +3,22 @@ import React, { useState, useEffect, FC } from 'react';
 import { Icountry } from '../interfaces/CountryCard';
 import { CFilterProps } from '../interfaces/Dashboard';
 import { countryData } from '../api/api_countrycard';
+import { Pagination } from './small_components/Pagination';
 
 export const CountryCard: FC<CFilterProps> = ({ searchName, searchGroup }) => {
   const [countries, setCountries] = useState<Icountry[]>([]);
   const [container, setContainer] = useState<Icountry[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemPerPage = 8;
+  const totalPages = Math.ceil(countries.length / itemPerPage);
+  const startIndex = (currentPage - 1) * itemPerPage;
+  const endIndex = startIndex + itemPerPage;
+  const dataForEachPage = countries.slice(startIndex, endIndex);
+
+  const onPageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
 
   const initialUpdate = async () => {
     try {
@@ -24,6 +36,7 @@ export const CountryCard: FC<CFilterProps> = ({ searchName, searchGroup }) => {
         return name?.toLowerCase().includes(value.toLowerCase());
       })
     );
+    setCurrentPage(1);
   };
 
   useEffect(() => {
@@ -45,27 +58,32 @@ export const CountryCard: FC<CFilterProps> = ({ searchName, searchGroup }) => {
   }, [container, searchName, searchGroup]);
 
   return (
-    <div className="grid grid-cols-4 gap-5 ml-[5rem] mt-[2rem]">
-      {countries.map((country) => (
-        <div className="w-[300px] h-[400px] rounded-md mb-[80px]">
-          <img className="w-[300px] h-[200px]" src={country.flags.png} alt={`${country.name.common} flag`} />
-          <div className="h-[183px] bg-white w-[300px]">
-            <div className="pl-[24px] font-sans font-extrabold pt-5 text-[18px]">{country.name.common}</div>
-            <div className="pl-[24px] pt-[10px]">
-              <span className="font-sans font-semibold pr-1">Population:</span>
-              {country.population}
-            </div>
-            <div className="pl-[24px]">
-              <span className="font-sans font-semibold pr-1">Region:</span>
-              {country.region}
-            </div>
-            <div className="pl-[24px]">
-              <span className="font-sans font-semibold pr-1">Capital:</span>
-              {country.capital}
+    <div>
+      <div className="grid grid-cols-4 gap-5 ml-[5rem] mt-[2rem]">
+        {dataForEachPage.map((country) => (
+          <div className="w-[340px] h-[400px] rounded-md mb-[80px]">
+            <img className="w-[340px] h-[200px]" src={country.flags.png} alt={`${country.name.common} flag`} />
+            <div className="h-[183px] bg-white w-[340px]">
+              <div className="pl-[24px] font-sans font-extrabold pt-5 text-[18px]">{country.name.common}</div>
+              <div className="pl-[24px] pt-[10px]">
+                <span className="font-sans font-semibold pr-1">Population:</span>
+                {country.population}
+              </div>
+              <div className="pl-[24px]">
+                <span className="font-sans font-semibold pr-1">Region:</span>
+                {country.region}
+              </div>
+              <div className="pl-[24px]">
+                <span className="font-sans font-semibold pr-1">Capital:</span>
+                {country.capital}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+      <div>
+        <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={onPageChange} />
+      </div>
     </div>
   );
 };
