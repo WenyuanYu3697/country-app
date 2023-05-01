@@ -1,8 +1,8 @@
 import React from 'react';
-import { CountryList } from './pages/CountryList';
+import { CountryListPage } from './pages/CountryListPage';
 
 function App() {
-  return <CountryList />;
+  return <CountryListPage />;
 }
 
 export default App;

@@ -27,7 +27,7 @@ export const Filter: FC<IFilterProps> = ({ searchName, searchGroup, setSearchNam
         <input
           value={searchName}
           className="h-[56px] w-[480px] pl-[74px] font-sans font-regular"
-          type="search"
+          type="text"
           placeholder="Search for a country"
           onChange={(e) => handleChange(e.target.value)}
         />
