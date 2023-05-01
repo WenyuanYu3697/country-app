@@ -30,8 +30,8 @@ export const CountryList: FC<ICountryList> = ({ searchName, searchGroup }) => {
   };
 
   const getCountryList = async () => {
-    const res = await getCountries();
-    setCountries(res.data);
+    const { data } = await getCountries();
+    setCountries(data);
   };
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export const CountryList: FC<ICountryList> = ({ searchName, searchGroup }) => {
           .filter((country) => filterCountries(country))
           .slice(startIndex, endIndex)
           .map((country) => (
-            <div className="w-[340px] h-[400px] rounded-md mb-[80px]">
+            <div className="w-[340px] h-[400px] rounded-md mb-[80px] cursor-pointer">
               <img className="w-[340px] h-[200px]" src={country.flags.png} alt={`${country.name.common} flag`} />
               <div className="h-[183px] bg-white w-[340px]">
                 <div className="pl-[24px] font-sans font-extrabold pt-5 text-[18px]">{country.name.common}</div>
