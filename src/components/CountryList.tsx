@@ -23,12 +23,14 @@ export const CountryList: FC<ICountryList> = ({ searchName, searchGroup }) => {
   };
 
   const filterCountries = (country: ICountry) => {
-    const filter = searchName ?? searchGroup;
-    const property = searchName.length === 0 ? country.region : country.name.common;
+    const filterName = searchName.toLowerCase();
+    const filterGroup = searchGroup.toLowerCase();
 
-    return property?.toLowerCase().includes(filter.toLowerCase());
+    const matchName = country.name.common.toLowerCase().includes(filterName);
+    const matchGroup = country.region.toLowerCase().includes(filterGroup);
+
+    return (searchName.length === 0 || matchName) && (searchGroup.length === 0 || matchGroup);
   };
-
   const getCountryList = async () => {
     const { data } = await getCountries();
     setCountries(data);
