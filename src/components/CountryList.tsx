@@ -14,18 +14,8 @@ interface ICountryList {
 
 export const CountryList: FC<ICountryList> = ({ searchName, searchGroup }) => {
   const [countries, setCountries] = useState<ICountry[]>([]);
-  const [filteredCountries, setFilteredCountries] = useState<ICountry[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
-
-  const itemPerPage = 8;
-  const totalPages = Math.ceil(filteredCountries.length / itemPerPage);
-  const startIndex = (currentPage - 1) * itemPerPage;
-  const endIndex = startIndex + itemPerPage;
-
-  const onPageChange = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
-  };
 
   const filterCountries = (country: ICountry) => {
     const filterName = searchName.toLowerCase();
@@ -37,6 +27,15 @@ export const CountryList: FC<ICountryList> = ({ searchName, searchGroup }) => {
     return (searchName.length === 0 || matchName) && (searchGroup.length === 0 || matchGroup);
   };
 
+  const itemPerPage = 8;
+  const totalPages = Math.ceil(countries.filter((country) => filterCountries(country)).length / itemPerPage);
+  const startIndex = (currentPage - 1) * itemPerPage;
+  const endIndex = startIndex + itemPerPage;
+
+  const onPageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+
   const getCountryList = async () => {
     const { data } = await getCountries();
     setCountries(data);
@@ -45,10 +44,6 @@ export const CountryList: FC<ICountryList> = ({ searchName, searchGroup }) => {
   useEffect(() => {
     getCountryList();
   }, []);
-
-  useEffect(() => {
-    setFilteredCountries(countries.filter((country) => filterCountries(country)));
-  }, [countries, searchName, searchGroup]);
 
   return (
     <div>
