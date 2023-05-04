@@ -54,7 +54,7 @@ export const CountryList: FC<ICountryList> = ({ searchName, searchGroup }) => {
           .map((country) => (
             <div
               role="button"
-              onClick={() => navigate(`/${country.name.common}`)}
+              onClick={() => navigate(`/${country.name.common.toLowerCase()}`)}
               className="w-[340px] h-[400px] rounded-md mb-[80px] cursor-pointer"
             >
               <img className="w-[340px] h-[200px]" src={country.flags.png} alt={`${country.name.common} flag`} />
