@@ -21,28 +21,28 @@ export const Filter: FC<IFilterProps> = ({ searchName, searchGroup, setSearchNam
   const handleGroupChange = (groupName: string) => setSearchGroup(groupName === searchGroup ? '' : groupName);
 
   return (
-    <div className="flex justify-between items-center mt-[3rem] h-[56px] rounded-md">
-      <div className="w-480 rounded-l-sm h-[56px] ml-[80px] relative">
+    <div className="flex justify-between flex-wrap bg-gray dark:bg-black-200 pt-[1rem] items-center h-[10rem]">
+      <div className="w-480 rounded-l-sm  bg-white dark:bg-black-100  text-black dark:text-white h-[56px] ml-[80px] relative">
         <SearchIcon className="absolute top-4 left-10 bg" />
         <input
           value={searchName}
-          className="h-[56px] w-[480px] pl-[74px] font-sans font-regular"
+          className="h-[56px] w-[480px]  bg-white dark:bg-black-100 pl-[74px] font-sans font-regular"
           type="text"
           placeholder="Search for a country"
           onChange={(e) => handleChange(e.target.value)}
         />
       </div>
-      <div className="relative  bg-white w-[200px] mr-[80px] rounded-lg">
+      <div className="relative sm:ml-[80px]  bg-white dark:bg-black-100 w-[200px] mr-[80px]  rounded-lg">
         <button
           type="button"
           onClick={() => setIsDropdownOpened(!isDropdownOpened)}
-          className="h-[56px] ml-[24px] font-sans font-regular flex items-center gap-5"
+          className="h-[56px] ml-[24px] text-black dark:text-white font-sans font-regular flex items-center gap-5"
         >
           Filter by Region
           {isDropdownOpened ? <KeyboardArrowLeftIcon /> : <KeyboardArrowDownIcon />}
         </button>
         {isDropdownOpened ? (
-          <ul className="absolute z-10 top-15 left-0 pl-6 w-full mt-2 bg-white rounded-md shadow-lg">
+          <ul className="absolute z-10 top-15 left-0 pl-6 w-full mt-2 bg-white dark:bg-black-100  text-black dark:text-white rounded-md shadow-lg">
             <li className="pt-3" role="button" onClick={() => handleGroupChange('Africa')}>
               Africa
             </li>

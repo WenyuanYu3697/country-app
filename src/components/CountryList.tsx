@@ -1,5 +1,8 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-console */
 import React, { useState, useEffect, FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getCountries } from '../api/country';
 import { Pagination } from './Pagination';
 import { ICountry } from '../types/country';
@@ -7,14 +10,17 @@ import { ICountry } from '../types/country';
 interface ICountryList {
   searchName: string;
   searchGroup: string;
+  setCountryName: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const CountryList: FC<ICountryList> = ({ searchName, searchGroup }) => {
+export const CountryList: FC<ICountryList> = ({ searchName, searchGroup, setCountryName }) => {
   const [countries, setCountries] = useState<ICountry[]>([]);
+  const [filteredCountries, setFilteredCountries] = useState<ICountry[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
 
   const itemPerPage = 8;
-  const totalPages = Math.ceil(countries.length / itemPerPage);
+  const totalPages = Math.ceil(filteredCountries.length / itemPerPage);
   const startIndex = (currentPage - 1) * itemPerPage;
   const endIndex = startIndex + itemPerPage;
 
@@ -31,25 +37,39 @@ export const CountryList: FC<ICountryList> = ({ searchName, searchGroup }) => {
 
     return (searchName.length === 0 || matchName) && (searchGroup.length === 0 || matchGroup);
   };
+
   const getCountryList = async () => {
     const { data } = await getCountries();
     setCountries(data);
+  };
+
+  const handleClick = (name: string) => {
+    setCountryName(name);
+    navigate(`/${name}`);
   };
 
   useEffect(() => {
     getCountryList();
   }, []);
 
+  useEffect(() => {
+    setFilteredCountries(countries.filter((country) => filterCountries(country)));
+  }, [countries, searchName, searchGroup]);
+
   return (
     <div>
-      <div className="grid grid-cols-4 gap-5 ml-[5rem] mt-[2rem]">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 pl-5 md:pl-[5rem] min-h-screen bg-gray dark:bg-black-200">
         {countries
           .filter((country) => filterCountries(country))
           .slice(startIndex, endIndex)
           .map((country) => (
-            <div className="w-[340px] h-[400px] rounded-md mb-[80px] cursor-pointer">
+            <div
+              role="button"
+              onClick={() => handleClick(country.name.common)}
+              className="w-[340px] h-[400px] rounded-md mb-[80px] cursor-pointer"
+            >
               <img className="w-[340px] h-[200px]" src={country.flags.png} alt={`${country.name.common} flag`} />
-              <div className="h-[183px] bg-white w-[340px]">
+              <div className="h-[183px] bg-white dark:bg-black-100 text-black dark:text-white w-[340px]">
                 <div className="pl-[24px] font-sans font-extrabold pt-5 text-[18px]">{country.name.common}</div>
                 <div className="pl-[24px] pt-[10px]">
                   <span className="font-sans font-semibold pr-1">Population:</span>

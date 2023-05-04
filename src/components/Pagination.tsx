@@ -25,7 +25,7 @@ export const Pagination: FC<IPaginationProps> = ({ currentPage, totalPages, onPa
   };
 
   return (
-    <div className="flex justify-center items-baseline">
+    <div className="flex justify-center items-baseline bg-gray dark:bg-black-200 text-black dark:text-white">
       <button className="p-[10px]" type="button" onClick={handlePageDecrease}>
         <KeyboardArrowLeftIcon />
       </button>
@@ -41,9 +41,7 @@ export const Pagination: FC<IPaginationProps> = ({ currentPage, totalPages, onPa
             .filter((pageNumber) => pageNumber !== totalPages)
             .map((pageNumber) => (
               <button
-                className={
-                  currentPage === pageNumber ? 'bg-blue-600 p-[5px] mr-2 rounded-full text-white' : 'p-[5px] mr-[2px]'
-                }
+                className={currentPage === pageNumber ? 'bg-blue-600 p-[5px] rounded-full' : 'p-[5px] mr-[2px]'}
                 onClick={() => handlePageOnClick(pageNumber)}
                 value={pageNumber}
                 type="button"
@@ -56,9 +54,7 @@ export const Pagination: FC<IPaginationProps> = ({ currentPage, totalPages, onPa
           {currentPage === maxButtons - 1 || currentPage === totalPages ? null : '...'}
         </div>
         <button
-          className={
-            currentPage === totalPages ? 'bg-blue-600 p-[5px] mr-2 rounded-full text-white' : 'p-[5px] mr-[2px]'
-          }
+          className={currentPage === totalPages ? 'bg-blue-600 p-[5px] mr-2 rounded-full' : 'p-[5px] mr-[2px]'}
           type="button"
           onClick={() => handlePageOnClick(totalPages)}
           value={totalPages}
