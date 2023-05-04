@@ -10,10 +10,9 @@ import { ICountry } from '../types/country';
 interface ICountryList {
   searchName: string;
   searchGroup: string;
-  setCountryName: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const CountryList: FC<ICountryList> = ({ searchName, searchGroup, setCountryName }) => {
+export const CountryList: FC<ICountryList> = ({ searchName, searchGroup }) => {
   const [countries, setCountries] = useState<ICountry[]>([]);
   const [filteredCountries, setFilteredCountries] = useState<ICountry[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,11 +42,6 @@ export const CountryList: FC<ICountryList> = ({ searchName, searchGroup, setCoun
     setCountries(data);
   };
 
-  const handleClick = (name: string) => {
-    setCountryName(name);
-    navigate(`/${name}`);
-  };
-
   useEffect(() => {
     getCountryList();
   }, []);
@@ -65,7 +59,7 @@ export const CountryList: FC<ICountryList> = ({ searchName, searchGroup, setCoun
           .map((country) => (
             <div
               role="button"
-              onClick={() => handleClick(country.name.common)}
+              onClick={() => navigate(`/${country.name.common}`)}
               className="w-[340px] h-[400px] rounded-md mb-[80px] cursor-pointer"
             >
               <img className="w-[340px] h-[200px]" src={country.flags.png} alt={`${country.name.common} flag`} />

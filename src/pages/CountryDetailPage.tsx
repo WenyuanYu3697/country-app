@@ -2,6 +2,7 @@ import React, { useParams } from 'react-router-dom';
 
 export const CountryDetailPage = () => {
   const params = useParams();
+
   const { countryName } = params;
 
   return (

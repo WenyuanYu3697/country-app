@@ -1,14 +1,9 @@
 import React, { useEffect, useState, FC } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Filter } from '../components/Filter';
 import { CountryList } from '../components/CountryList';
 
-interface CountryLisitProps {
-  setCountryName: (name: string) => void;
-}
-
-export const CountryListPage: FC<CountryLisitProps> = ({ setCountryName }) => {
+export const CountryListPage: FC = () => {
   const [searchName, setSearchName] = useState('');
   const [searchGroup, setSearchGroup] = useState('');
 
@@ -27,16 +22,14 @@ export const CountryListPage: FC<CountryLisitProps> = ({ setCountryName }) => {
   }, [theme]);
 
   return (
-    <Router>
-      <div className="h-screen">
-        <Header theme={theme} toggleTheme={toggleTheme} />
-        <div className="flex-1 bg-gray-200">
-          <div className="flex flex-col">
-            <Filter {...{ searchName, searchGroup, setSearchGroup, setSearchName }} />
-            <CountryList {...{ searchName, searchGroup, setCountryName }} />
-          </div>
+    <div className="h-screen">
+      <Header theme={theme} toggleTheme={toggleTheme} />
+      <div className="flex-1 bg-gray-200">
+        <div className="flex flex-col">
+          <Filter {...{ searchName, searchGroup, setSearchGroup, setSearchName }} />
+          <CountryList {...{ searchName, searchGroup }} />
         </div>
       </div>
-    </Router>
+    </div>
   );
 };
