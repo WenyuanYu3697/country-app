@@ -1,7 +1,8 @@
+/* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -21,18 +22,18 @@ export const Filter: FC<IFilterProps> = ({ searchName, searchGroup, setSearchNam
   const handleGroupChange = (groupName: string) => setSearchGroup(groupName === searchGroup ? '' : groupName);
 
   return (
-    <div className="flex justify-between flex-wrap bg-gray dark:bg-black-200 pt-[1rem] items-center h-[10rem]">
-      <div className="w-480 rounded-l-sm  bg-white dark:bg-black-100  text-black dark:text-white h-[56px] ml-[80px] relative">
+    <div className="flex w-full justify-between flex-wrap bg-gray dark:bg-black-200 pt-[1rem] items-center h-[10rem]">
+      <div className="w-480 rounded-l-sm  bg-white dark:bg-black-100  text-black dark:text-white h-[56px] ml-[80px] max-screen:ml-[20px] relative">
         <SearchIcon className="absolute top-4 left-10 bg" />
         <input
           value={searchName}
-          className="h-[56px] w-[480px]  bg-white dark:bg-black-100 pl-[74px] font-sans font-regular"
+          className="h-[56px] w-[480px] max-screen:w-auto bg-white dark:bg-black-100 pl-[74px] mr-[90px] font-sans font-regular"
           type="text"
           placeholder="Search for a country"
           onChange={(e) => handleChange(e.target.value)}
         />
       </div>
-      <div className="relative sm:ml-[80px]  bg-white dark:bg-black-100 w-[200px] mr-[80px]  rounded-lg">
+      <div className="relative ml-[74px] max-screen:ml-[20px] max-screen:mt-[1rem]  bg-white dark:bg-black-100 w-[200px] mr-[80px]  rounded-lg">
         <button
           type="button"
           onClick={() => setIsDropdownOpened(!isDropdownOpened)}

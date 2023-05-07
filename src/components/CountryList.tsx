@@ -1,7 +1,8 @@
+/* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-console */
-import React, { useState, useEffect, FC } from 'react';
+import { useState, useEffect, FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getCountries } from '../api/country';
 import { Pagination } from './Pagination';
@@ -46,13 +47,14 @@ export const CountryList: FC<ICountryList> = ({ searchName, searchGroup }) => {
   }, []);
 
   return (
-    <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 pl-5 md:pl-[5rem] min-h-screen bg-gray dark:bg-black-200">
+    <div className="w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 pl-[5rem] max-screen:pl-[20px] max-screen:pt-[2rem] min-h-screen bg-gray dark:bg-black-200">
         {countries
           .filter((country) => filterCountries(country))
           .slice(startIndex, endIndex)
           .map((country) => (
             <div
+              key={country.name.common}
               role="button"
               onClick={() => navigate(`/${country.name.common.toLowerCase()}`)}
               className="w-[340px] h-[400px] rounded-md mb-[80px] cursor-pointer"
