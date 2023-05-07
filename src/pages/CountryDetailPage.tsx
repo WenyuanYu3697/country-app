@@ -39,11 +39,11 @@ export const CountryDetailPage = () => {
       <Header theme={theme} toggleTheme={toggleTheme} />
       <div className="bg-gray dark:bg-black-200 h-calc-full-minus-80">
         <button
-          className="w-[136px] bg-gray dark:bg-black-100 text-black justify-center rounded-md dark:text-white h-[40px] ml-[10rem] mt-[5rem] gap-5 cursor-pointer"
+          className="w-[136px] bg-white dark:bg-black-100 text-black justify-center rounded-md dark:text-white h-[40px] ml-[10rem] mt-[5rem] pt-1 pr-2 gap-5 cursor-pointer"
           type="button"
           onClick={() => navigate('/')}
         >
-          <KeyboardBackspaceIcon className="pb-1" />
+          <KeyboardBackspaceIcon className="pb-1 pr-2" />
           Back
         </button>
         <div>
