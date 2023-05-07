@@ -7,6 +7,10 @@ export default {
       height: {
         'calc-full-minus-80': 'calc(100vh - 80px)',
       },
+      screens: {
+        xs: '300px',
+        'max-screen': { max: '669px' },
+      },
     },
     colors: {
       gray: '#F2F2F2',
