@@ -1,4 +1,5 @@
-import React, { useEffect, useState, FC } from 'react';
+/* eslint-disable react/react-in-jsx-scope */
+import { useEffect, useState, FC } from 'react';
 import { Header } from '../components/Header';
 import { Filter } from '../components/Filter';
 import { CountryList } from '../components/CountryList';

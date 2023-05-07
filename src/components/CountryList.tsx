@@ -1,7 +1,8 @@
+/* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-console */
-import React, { useState, useEffect, FC } from 'react';
+import { useState, useEffect, FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getCountries } from '../api/country';
 import { Pagination } from './Pagination';
@@ -53,6 +54,7 @@ export const CountryList: FC<ICountryList> = ({ searchName, searchGroup }) => {
           .slice(startIndex, endIndex)
           .map((country) => (
             <div
+              key={country.name.common}
               role="button"
               onClick={() => navigate(`/${country.name.common.toLowerCase()}`)}
               className="w-[340px] h-[400px] rounded-md mb-[80px] cursor-pointer"

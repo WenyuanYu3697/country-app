@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+/* eslint-disable react/react-in-jsx-scope */
+import { FC } from 'react';
 import Brightness2Icon from '@mui/icons-material/Brightness2';
 import Brightness5Icon from '@mui/icons-material/Brightness5';
 

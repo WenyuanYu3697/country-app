@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+/* eslint-disable react/react-in-jsx-scope */
+import { FC } from 'react';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
@@ -41,6 +42,7 @@ export const Pagination: FC<IPaginationProps> = ({ currentPage, totalPages, onPa
             .filter((pageNumber) => pageNumber !== totalPages)
             .map((pageNumber) => (
               <button
+                key={pageNumber}
                 className={currentPage === pageNumber ? 'bg-blue-600 p-[5px] rounded-full' : 'p-[5px] mr-[2px]'}
                 onClick={() => handlePageOnClick(pageNumber)}
                 value={pageNumber}
