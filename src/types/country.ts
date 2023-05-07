@@ -5,8 +5,14 @@ export interface ICountry {
   };
   subregion: string;
   tld: string;
-  currencies: string;
-  languages?: string[];
+  currencies: {
+    [key: string]: {
+      name: string;
+    };
+  };
+  languages: {
+    [key: string]: string;
+  };
   flags: {
     png: string;
   };
