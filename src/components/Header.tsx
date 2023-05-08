@@ -9,17 +9,19 @@ interface HeaderProps {
 }
 
 export const Header: FC<HeaderProps> = ({ theme, toggleTheme }) => (
-  <div className="h-[80px] flex justify-between items-center bg-white dark:bg-black-100">
-    <div className="font-sans text-black dark:text-white font-extrabold H-5 ml-[5rem] text-2xl max-screen:text-[19px] max-screen:ml-[2rem]">
-      Where in the world?
+  <div className="bg-white dark:bg-black-100">
+    <div className="max-w-7xl mx-auto py-6 px-4 xl:px-0 flex justify-between items-center">
+      <div className="font-sans text-black dark:text-white font-extrabold text-2xl max-screen:text-[19px]">
+        Where in the world?
+      </div>
+      <button
+        type="button"
+        className="font-sans text-black dark:text-white font-semibold max-screen:text-[16px] flex items-center gap-1"
+        onClick={toggleTheme}
+      >
+        {theme === 'light' ? <Brightness5Icon /> : <Brightness2Icon />}
+        {theme === 'light' ? 'Light Mode' : 'Dark Mode'}
+      </button>
     </div>
-    <button
-      type="button"
-      className="font-sans text-black dark:text-white font-semibold mr-[5rem] max-screen:text-[16px] max-screen:mr-[2rem] flex items-center gap-1"
-      onClick={toggleTheme}
-    >
-      {theme === 'light' ? <Brightness5Icon /> : <Brightness2Icon />}
-      {theme === 'light' ? 'Light Mode' : 'Dark Mode'}
-    </button>
   </div>
 );

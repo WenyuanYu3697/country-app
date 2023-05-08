@@ -48,7 +48,7 @@ export const CountryList: FC<ICountryList> = ({ searchName, searchGroup }) => {
 
   return (
     <div className="w-full">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 pl-[5rem] max-screen:pl-[20px] max-screen:pt-[2rem] min-h-screen bg-gray dark:bg-black-200">
+      <div className="gap-[74px] flex flex-wrap">
         {countries
           .filter((country) => filterCountries(country))
           .slice(startIndex, endIndex)
@@ -57,21 +57,21 @@ export const CountryList: FC<ICountryList> = ({ searchName, searchGroup }) => {
               key={country.name.common}
               role="button"
               onClick={() => navigate(`/${country.name.common.toLowerCase()}`)}
-              className="w-[340px] h-[400px] rounded-md mb-[80px] cursor-pointer"
+              className="w-[264px] h-[336px] rounded-md cursor-pointer"
             >
-              <img className="w-[340px] h-[200px]" src={country.flags.png} alt={`${country.name.common} flag`} />
-              <div className="h-[183px] bg-white dark:bg-black-100 text-black dark:text-white w-[340px]">
-                <div className="pl-[24px] font-sans font-extrabold pt-5 text-[18px]">{country.name.common}</div>
-                <div className="pl-[24px] pt-[10px]">
-                  <span className="font-sans font-semibold pr-1">Population:</span>
+              <img className="w-[264px] h-[160px]" src={country.flags.png} alt={`${country.name.common} flag`} />
+              <div className="bg-white dark:bg-black-100 text-black dark:text-white px-6 pt-6 pb-[46px]">
+                <div className="font-sans font-extrabold text-[18px]">{country.name.common}</div>
+                <div className="mt-4 gap-2">
+                  <span className="font-sans font-semibold">Population:</span>
                   {country.population}
                 </div>
-                <div className="pl-[24px]">
-                  <span className="font-sans font-semibold pr-1">Region:</span>
+                <div>
+                  <span className="font-sans font-semibold">Region:</span>
                   {country.region}
                 </div>
-                <div className="pl-[24px]">
-                  <span className="font-sans font-semibold pr-1">Capital:</span>
+                <div>
+                  <span className="font-sans font-semibold">Capital:</span>
                   {country.capital}
                 </div>
               </div>

@@ -4,7 +4,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { FC, useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 export interface IFilterProps {
@@ -23,7 +23,7 @@ export const Filter: FC<IFilterProps> = ({ searchName, searchGroup, setSearchNam
 
   return (
     <div className="flex w-full justify-between flex-wrap bg-gray dark:bg-black-200 pt-[1rem] items-center h-[10rem]">
-      <div className="w-480 rounded-l-sm  bg-white dark:bg-black-100  text-black dark:text-white h-[56px] ml-[80px] max-screen:ml-[20px] relative">
+      <div className="w-480 rounded-l-sm  bg-white dark:bg-black-100  text-black dark:text-white h-[56px] relative">
         <SearchIcon className="absolute top-4 left-10 bg" />
         <input
           value={searchName}
@@ -33,14 +33,14 @@ export const Filter: FC<IFilterProps> = ({ searchName, searchGroup, setSearchNam
           onChange={(e) => handleChange(e.target.value)}
         />
       </div>
-      <div className="relative ml-[74px] max-screen:ml-[20px] max-screen:mt-[1rem]  bg-white dark:bg-black-100 w-[200px] mr-[80px]  rounded-lg">
+      <div className="relative bg-white dark:bg-black-100 w-[200px] rounded-lg">
         <button
           type="button"
           onClick={() => setIsDropdownOpened(!isDropdownOpened)}
           className="h-[56px] ml-[24px] text-black dark:text-white font-sans font-regular flex items-center gap-5"
         >
           Filter by Region
-          {isDropdownOpened ? <KeyboardArrowLeftIcon /> : <KeyboardArrowDownIcon />}
+          {isDropdownOpened ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
         </button>
         {isDropdownOpened ? (
           <ul className="absolute z-10 top-15 left-0 pl-6 w-full mt-2 bg-white dark:bg-black-100  text-black dark:text-white rounded-md shadow-lg">
