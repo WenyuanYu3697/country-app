@@ -22,7 +22,7 @@ export const Filter: FC<IFilterProps> = ({ searchName, searchGroup, setSearchNam
   const handleGroupChange = (groupName: string) => setSearchGroup(groupName === searchGroup ? '' : groupName);
 
   return (
-    <div className="flex w-full justify-between flex-wrap bg-gray dark:bg-black-200 pt-[1rem] items-center h-[10rem]">
+    <div className="bg-gray dark:bg-black-200 flex w-full justify-between items-center md:my-12 px-4 xl:px-0">
       <div className="w-480 rounded-l-sm  bg-white dark:bg-black-100  text-black dark:text-white h-[56px] relative">
         <SearchIcon className="absolute top-4 left-10 bg" />
         <input

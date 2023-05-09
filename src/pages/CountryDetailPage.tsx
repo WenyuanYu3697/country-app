@@ -16,6 +16,8 @@ export const CountryDetailPage = () => {
   const fetchData = async () => {
     const { data } = await getCountry(countryName || 'Canada');
 
+    console.log(data);
+
     if (data.length) setCountry(data[0]);
   };
 
@@ -35,21 +37,13 @@ export const CountryDetailPage = () => {
       </button>
       <div>
         <div className="inline-flex gap-[10rem] pt-[5rem] pl-[5rem] justify-center">
-          <img
-            className="h-[401px] w-[700px] rounded-md ml-[5rem]"
-            src="https://flagcdn.com/w320/ca.png"
-            alt="Canada flag"
-          />
+          <img className="h-[401px] w-[700px] rounded-md ml-[5rem]" src={country?.flags.png} alt="Canada flag" />
           <div className="text-black dark:text-white">
             <div className="font-sans font-extrabold font text-[32px] pt-[2rem]">Canada</div>
             <div className="inline-flex gap-[11.4rem] pt-4">
               <div>
                 <span className="font-sans font-semibold text-[16px] pr-1">Native Name:</span>
                 Canada
-              </div>
-              <div>
-                <span className="font-sans font-semibold text-[16px] pr-1">Top Level Domain: </span>
-                .ca
               </div>
             </div>
             <div>
