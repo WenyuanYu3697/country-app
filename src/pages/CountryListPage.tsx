@@ -9,7 +9,7 @@ export const CountryListPage: FC = () => {
   return (
     <div className="min-h-screen">
       <div className="flex-1 w-screen bg-gray dark:bg-black-200">
-        <div className="flex flex-col max-w-7xl mx-auto">
+        <div className="flex flex-col mx-auto">
           <Filter {...{ searchName, searchGroup, setSearchGroup, setSearchName }} />
           <CountryList {...{ searchName, searchGroup }} />
         </div>

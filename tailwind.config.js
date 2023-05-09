@@ -4,12 +4,8 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
-      height: {
-        'calc-full-minus-80': 'calc(100vh - 80px)',
-      },
-      screens: {
-        xs: '300px',
-        'max-screen': { max: '669px' },
+      maxWidth: {
+        desktop: '1440px',
       },
     },
     colors: {

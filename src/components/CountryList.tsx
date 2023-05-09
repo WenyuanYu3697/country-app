@@ -47,8 +47,8 @@ export const CountryList: FC<ICountryList> = ({ searchName, searchGroup }) => {
   }, []);
 
   return (
-    <div className="w-full px-4 xl:px-0">
-      <div className="gap-[40px] xl:gap-[74px] flex flex-wrap">
+    <div className="w-full max-w-desktop mx-auto px-4 xl:px-20">
+      <div className="gap-[40px] xl:gap-[74px] flex flex-wrap justify-center">
         {countries
           .filter((country) => filterCountries(country))
           .slice(startIndex, endIndex)

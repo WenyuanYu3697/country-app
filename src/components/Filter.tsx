@@ -22,18 +22,18 @@ export const Filter: FC<IFilterProps> = ({ searchName, searchGroup, setSearchNam
   const handleGroupChange = (groupName: string) => setSearchGroup(groupName === searchGroup ? '' : groupName);
 
   return (
-    <div className="bg-gray dark:bg-black-200 flex w-full justify-between items-center md:my-12 px-4 xl:px-0">
-      <div className="w-480 rounded-l-sm  bg-white dark:bg-black-100  text-black dark:text-white h-[56px] relative">
+    <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center w-full max-w-desktop mx-auto py-6 px-4 md:py-12 xl:px-20">
+      <div className="rounded-l-sm  bg-white dark:bg-black-100  text-black dark:text-white h-[56px] relative">
         <SearchIcon className="absolute top-4 left-10 bg" />
         <input
           value={searchName}
-          className="h-[56px] w-[480px] max-screen:w-auto bg-white dark:bg-black-100 pl-[74px] mr-[90px] font-sans font-regular"
+          className="h-[56px] max-w-[480px] max-screen:w-auto bg-white dark:bg-black-100 pl-[74px] mr-[90px] font-sans font-regular"
           type="text"
           placeholder="Search for a country"
           onChange={(e) => handleChange(e.target.value)}
         />
       </div>
-      <div className="relative bg-white dark:bg-black-100 w-[200px] rounded-lg">
+      <div className="relative bg-white dark:bg-black-100 w-[200px] rounded-lg mt-10 lg:mt-0">
         <button
           type="button"
           onClick={() => setIsDropdownOpened(!isDropdownOpened)}

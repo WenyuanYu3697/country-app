@@ -10,7 +10,7 @@ interface HeaderProps {
 
 export const Header: FC<HeaderProps> = ({ theme, toggleTheme }) => (
   <div className="bg-white dark:bg-black-100">
-    <div className="max-w-7xl mx-auto py-6 px-4 xl:px-0 flex justify-between items-center">
+    <div className="max-w-desktop mx-auto py-6 px-4 xl:px-20 flex justify-between items-center">
       <div className="font-sans text-black dark:text-white font-extrabold text-2xl max-screen:text-[19px]">
         Where in the world?
       </div>
